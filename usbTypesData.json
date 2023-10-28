@@ -1,0 +1,58 @@
+[
+    {
+                "version": "USB 1.0",
+                "year": 1996,
+                "speed": "1.5",
+                "notableChanges": "Einführung des USB-Standards, unterstützt Tastaturen, Peripheriegeräte wie Drucker, Scanner und externe Massenspeicher.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/6/6b/USB-Steckerformen.jpg",
+                "copyright": "Von GeroZ, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=19083548"
+    },
+    {
+                "version": "USB 1.1",
+                "year": 1998,
+                "speed": "12",
+                "notableChanges": "Fehlerbehebung und Klärung der Spezifikation von 1.0, Hinzufügung des Interrupt Out Transfer.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/6/6b/USB-Steckerformen.jpg",
+                "copyright": "Von GeroZ, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=19083548"
+    },
+    {
+                "version": "USB 2.0",
+                "year": 2000,
+                "speed": "480",
+                "notableChanges": "Erhebliche Steigerung der Datenübertragungsrate, Unterstützung ab Windows XP Service Pack 1 und Windows 2000 Service Pack 4.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/6/6b/USB-Steckerformen.jpg",
+                "copyright": "Von GeroZ, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=19083548"
+    },
+    {
+                "version": "USB 3.0",
+                "year": 2008,
+                "speed": "5000",
+                "notableChanges": "Einführung von Superspeed-Übertragung, neue Stecker, Kabel und Buchsen.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Connector_USB_3_IMGP6024_wp.jpg/1280px-Connector_USB_3_IMGP6024_wp.jpg",
+                "copyright": "Von smial (talk) - Eigenes Werk, FAL, https://commons.wikimedia.org/w/index.php?curid=11999240"
+    },
+    {
+                "version": "USB 3.1",
+                "year": 2013,
+                "speed": "10000",
+                "notableChanges": "Verdopplung der Übertragungsrate, Einführung von USB 3.1 Gen 1 und USB 3.1 Gen 2.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/9/92/USB_Type-C_Plug_03.jpg",
+                "copyright": "Von Hibiskus100 - Eigenes Werk, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=38969805"
+    },
+    {
+                "version": "USB 3.2",
+                "year": 2017,
+                "speed": "20000",
+                "notableChanges": "Verdopplung der Datenrate, neue Bezeichnungen für bestehende USB 3.1-Technologien.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/4/47/USB_3.1_Gen2_Typ-C_to_Typ-A_cable_10Gbps_PD_60W.jpg",
+                "copyright": "Von Johannes Kalliauer - Eigenes Werk https://www.club-3d.com/de/detail/2354/usb_3.1_typ_c_auf_typ_a_kabel_10gbps_pd_60w_s-s_1m-3.28ft/, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=115028818"
+    },
+    {
+                "version": "USB4",
+                "year": 2019,
+                "speed": "40000",
+                "notableChanges": "Folgt USB 3.2 und Thunderbolt 3 nach, unterstützt baumartige verzweigte Strukturen und USB-C-Port wird verpflichtend.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/6/6a/USB4_Type-C_Gen3x2_Bi-Directional_Cable_40Gbps_8K60Hz_100W_PowerDelivery.jpg",
+                "copyright": "Von Johannes Kalliauer - Eigenes Werk https://www.club-3d.com/de/detail/2522/, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=115028819"
+    }
+]

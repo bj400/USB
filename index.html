@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USB Überblick</title>
+    <style>
+        /* Einige grundlegende Stile für das SVG und die Balken */
+        #usb-types {
+            width: 100%;
+            height: 100%;
+        }
+
+        svg {
+            font-family: Arial, sans-serif;
+        }
+
+        rect {
+            fill: steelblue;
+        }
+
+        text {
+            fill: #000;
+        }
+
+        #info-box {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            border: 1px solid #ccc;
+            background-color: white;
+            padding: 10px;
+            width: 300px;
+            display: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+
+        #info-image {
+            max-width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Universal Serial Bus</h1>
+
+    <div id="usb-types">
+        <h2>Entwicklung der Geschwindigkeiten</h2>
+        <p>Klick für weitere Informationen</p>
+    </div>
+
+    <div id="info-box">
+        <h2 id="info-title"></h2>
+        <img id="info-image" src="" alt="USB Standard Image">
+        <p id="info-text"></p>
+    </div>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script>
+
+        d3.json("https://pastebin.com/5zp2UQcM").then(function (usbTypesData) {
+            display();
+        });
+
+        function display() {
+
+            var margin = { top: 20, right: 30, bottom: 40, left: 40 },
+                width = 800 - margin.left - margin.right,
+                height = 400 - margin.top - margin.bottom;
+
+            var svg = d3.select("#usb-types").append("svg")
+                .attr("width", "100%")
+                .attr("height", "100%")
+                .attr("viewBox", "0 0 800 400")
+                .attr("preserveAspectRatio", "xMinYMin meet")
+                .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+            var x = d3.scaleBand()
+                .domain(usbTypesData.map(function (d) { return d.version; }))
+                .range([0, width])
+                .padding(0.1);
+
+            var y = d3.scaleLinear()
+                .domain([0, d3.max(usbTypesData, function (d) { return parseInt(d.speed); })])
+                .nice()
+                .range([height, 0]);
+
+            svg.selectAll("rect")
+                .data(usbTypesData)
+                .enter().append("rect")
+                .attr("x", function (d) { return x(d.version); })
+                .attr("y", function (d) { return y(parseInt(d.speed)); })
+                .attr("width", x.bandwidth())
+                .attr("height", function (d) { return height - y(parseInt(d.speed)); })
+                .append("title")  // Hinzufügen des title-Elements für jeden Rechteck
+                .text(function (d) { return d.notableChanges; });
+
+            var xAxisGroup = svg.append("g")
+                .attr("class", "x-axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x).tickSize(0));
+
+            xAxisGroup.selectAll(".tick text")  // Auswahl der Textelemente der x-Achse
+                .data(usbTypesData)
+                .attr("data-index", function (d, i) { return i; });  // Index als Datenattribut speichern
+
+            xAxisGroup.selectAll(".tick")  // Auswahl der tick-Gruppen
+                .append("title")  // Hinzufügen des title-Elements für jede Achsenbezeichnung
+                .text(function (d, i) {
+                    var index = d3.select(this.parentNode).select("text").attr("data-index");  // Index aus Datenattribut abrufen
+                    return usbTypesData[index].notableChanges;
+                });
+
+            svg.append("g")
+                .attr("class", "y-axis")
+                .call(d3.axisLeft(y).ticks(5));
+
+            // Globale Variable, um den zuletzt angeklickten Balken zu speichern
+            var lastClickedBar = null;
+
+            // Funktion, die aufgerufen wird, wenn ein Balken angeklickt wird
+            function onBarClick(d) {
+                var infoBox = d3.select("#info-box");
+                // Überprüfe, ob der angeklickte Balken der zuletzt angeklickte Balken ist
+                var isSameBar = lastClickedBar === d;
+                // Zeige oder verstecke die Box basierend auf dem zuletzt angeklickten Balken
+                infoBox.style("display", isSameBar && infoBox.style("display") !== "none" ? "none" : "block");
+                // Aktualisiere den Inhalt der Box, wenn sie angezeigt wird
+                if (!isSameBar || infoBox.style("display") !== "none") {
+                    infoBox.select("#info-title").text(d.version);
+                    infoBox.select("#info-image").attr("src", d.image);
+                    infoBox.select("#info-text").text(d.notableChanges);
+                }
+                // Aktualisiere den zuletzt angeklickten Balken
+                lastClickedBar = isSameBar && infoBox.style("display") === "none" ? null : d;
+            }
+
+            // Füge den Click-Ereignishandler zu den Balken hinzu
+            svg.selectAll("rect")
+                .on("click", onBarClick);
+        }
+
+    </script>
+
+</body>
+
+</html>
