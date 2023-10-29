@@ -62,7 +62,10 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script>
 
-        d3.json("https://pastebin.com/5zp2UQcM").then(function (usbTypesData) {
+        var usbTypesData;
+
+        d3.json("https://bj400.github.io/USB/usbTypesData.json").then(function (a) {
+            usbTypesData = a;
             display();
         });
 
